@@ -1,31 +1,49 @@
-import { useState } from 'react'
-import './App.css'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from "react";
+import Dashboard from "@/components/Dashboard";
+import ActivityList from "@/components/ActivityList";
+import AddActivityModal from "@/components/AddActivityModal";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "./components/ui/button";
 
-function App() {
-  const [count, setCount] = useState(0)
+const data = [
+  {
+    name: "bloe",
+    duration: 2,
+    date: "20240412",
+  },
+];
 
+export default function App() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const handleAddActivity = () => setModalOpen(true);
   return (
-    <>
-      <div>
-        <a href='https://vitejs.dev' target='_blank'>
-          <img src={viteLogo} className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://react.dev' target='_blank'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount(count => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>Click on the Vite and React logos to learn more</p>
-    </>
-  )
-}
+    <div className="min-h-screen">
+      <header className="shadow px-4 py-2 flex justify-between items-center">
+        <h1 className="text-lg font-semibold">Personal Activity Tracker</h1>
+        <Button
+          onClick={handleAddActivity}
+          className="text-white bg-blue-500 rounded hover:bg-blue-600"
+        >
+          Add Activity
+        </Button>
+      </header>
 
-export default App
+      <main className="px-4 py-6">
+        <Tabs defaultValue="dashboard">
+          <TabsList className="flex justify-start">
+            <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+            <TabsTrigger value="activity-list">Activity List</TabsTrigger>
+          </TabsList>
+          <TabsContent value="dashboard">
+            <Dashboard />
+          </TabsContent>
+          <TabsContent value="activity-list">
+            <ActivityList activities={data} />
+          </TabsContent>
+        </Tabs>
+      </main>
+
+      {isModalOpen && <AddActivityModal onClose={() => setModalOpen(false)} />}
+    </div>
+  );
+}
