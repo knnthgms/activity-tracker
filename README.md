@@ -6,6 +6,12 @@ This web application allows users to log their daily personal activities and vie
 
 ---
 
+## Demo
+
+A live deployed version of the app can be found [here](https://cool-stardust-6d3480.netlify.app/)
+
+---
+
 ## **Features**
 
 ### **Activity Logging**
