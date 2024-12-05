@@ -84,8 +84,9 @@ Ensure you have the following installed:
    npm run build
    ```
 
-## Included Libraries
+## Libraries Used
 
+- **axios**: Promise based HTTP client for the browser and node.js.
 - **@radix-ui/react-slot**: Component primitives for building unstyled, fully accessible UIs.
 - **class-variance-authority**: A utility for managing conditional CSS class variations.
 - **clsx**: A tiny utility for constructing className strings conditionally.
