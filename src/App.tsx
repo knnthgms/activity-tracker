@@ -17,7 +17,6 @@ export default function App() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [useMockData, setUseMockData] = useState(false);
-  console.log(activities);
 
   const handleAddActivity = () => setModalOpen(true);
   const handleUseMockData = () => {
