@@ -28,9 +28,7 @@ const ActivityList: React.FC<ActivityListProps> = ({ activities }) => {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Activity List</h2>
-
+    <>
       {activities.length === 0 ? (
         <p className="text-gray-500">No activities logged yet.</p>
       ) : (
@@ -87,7 +85,7 @@ const ActivityList: React.FC<ActivityListProps> = ({ activities }) => {
           </div>
         </>
       )}
-    </div>
+    </>
   );
 };
 

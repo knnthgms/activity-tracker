@@ -4,14 +4,16 @@ import ActivityList from "@/components/ActivityList";
 import AddActivityModal from "@/components/AddActivityModal";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "./components/ui/button";
+import { generateMockActivityData } from "./utils/mockData";
 
-const data = [
-  {
-    name: "bloe",
-    duration: 2,
-    date: "20240412",
-  },
-];
+export interface Activity {
+  id: string;
+  name: string;
+  duration: number;
+  date: string;
+}
+
+const mockData: Activity[] = generateMockActivityData(20);
 
 export default function App() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -30,10 +32,10 @@ export default function App() {
             <TabsTrigger value="activity-list">Activity List</TabsTrigger>
           </TabsList>
           <TabsContent value="dashboard">
-            <Dashboard />
+            <Dashboard data={mockData} />
           </TabsContent>
           <TabsContent value="activity-list">
-            <ActivityList activities={data} />
+            <ActivityList activities={mockData} />
           </TabsContent>
         </Tabs>
       </main>
