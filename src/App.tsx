@@ -20,17 +20,12 @@ export default function App() {
     <div className="min-h-screen">
       <header className="shadow px-4 py-2 flex justify-between items-center">
         <h1 className="text-lg font-semibold">Personal Activity Tracker</h1>
-        <Button
-          onClick={handleAddActivity}
-          className="text-white bg-blue-500 rounded hover:bg-blue-600"
-        >
-          Add Activity
-        </Button>
+        <Button onClick={handleAddActivity}>Add Activity</Button>
       </header>
 
       <main className="px-4 py-6">
         <Tabs defaultValue="dashboard">
-          <TabsList className="flex justify-start">
+          <TabsList className="flex justify-center">
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
             <TabsTrigger value="activity-list">Activity List</TabsTrigger>
           </TabsList>

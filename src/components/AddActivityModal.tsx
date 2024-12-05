@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import DatePicker from "./ui/datepicker";
 
 interface AddActivityModalProps {
   onClose: () => void;
@@ -47,12 +49,12 @@ const AddActivityModal: React.FC<AddActivityModalProps> = ({
           >
             Activity Name
           </label>
-          <input
+          <Input
             id="activity-name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            className="mt-1"
             placeholder="e.g., Running, Reading"
           />
         </div>
@@ -64,12 +66,12 @@ const AddActivityModal: React.FC<AddActivityModalProps> = ({
           >
             Duration (minutes)
           </label>
-          <input
+          <Input
             id="duration"
             type="number"
             value={duration}
             onChange={(e) => setDuration(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            className="mt-1"
             placeholder="Enter duration in minutes"
           />
         </div>
@@ -81,26 +83,14 @@ const AddActivityModal: React.FC<AddActivityModalProps> = ({
           >
             Date
           </label>
-          <input
-            id="date"
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-          />
+          <DatePicker value={date} onChange={(date) => setDate(date)} />
         </div>
 
         <div className="flex justify-end space-x-4">
-          <Button
-            onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
-          >
+          <Button onClick={onClose} variant="secondary">
             Cancel
           </Button>
-          <Button
-            onClick={handleSave}
-            className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded hover:bg-blue-600"
-          >
+          <Button onClick={handleSave} variant="default">
             Save
           </Button>
         </div>
