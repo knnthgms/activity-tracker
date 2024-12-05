@@ -20,7 +20,6 @@ interface DashboardProps {
   data: Activity[];
 }
 
-// Define color palette for charts
 const COLORS = [
   "#C0C999",
   "#fd96a9",
@@ -31,7 +30,6 @@ const COLORS = [
 ];
 
 const Dashboard: React.FC<DashboardProps> = ({ data }) => {
-  // Helper: Aggregate total time spent per activity
   const getTotalTimePerActivity = () =>
     Object.entries(
       data.reduce((acc, activity) => {
@@ -40,9 +38,7 @@ const Dashboard: React.FC<DashboardProps> = ({ data }) => {
       }, {} as Record<string, number>)
     ).map(([name, duration]) => ({ name, duration }));
 
-  // Helper: Aggregate daily activity trend for each activity
   const getDailyActivityTrend = () => {
-    // Create an object where each activity has its own durations per day
     const result: Record<string, { date: string; duration: number }[]> = {};
 
     data.forEach((activity) => {
@@ -55,11 +51,12 @@ const Dashboard: React.FC<DashboardProps> = ({ data }) => {
       });
     });
 
-    // Convert the object into an array of objects where each object represents a day and includes durations for each activity
     const allDates = Array.from(new Set(data.map((activity) => activity.date)));
 
     const mergedData = allDates.map((date) => {
-      const mergedEntry: { date: string; [key: string]: number } = { date };
+      const mergedEntry: { date: string; [key: string]: number | string } = {
+        date,
+      };
       Object.entries(result).forEach(([activity, durations]) => {
         const activityData = durations.find((entry) => entry.date === date);
         mergedEntry[activity] = activityData ? activityData.duration : 0;
@@ -70,7 +67,6 @@ const Dashboard: React.FC<DashboardProps> = ({ data }) => {
     return mergedData;
   };
 
-  // Data for visualizations
   const totalTimePerActivity = getTotalTimePerActivity();
   const dailyActivityTrend = getDailyActivityTrend();
   const uniqueActivities = Array.from(
