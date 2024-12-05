@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
-
-interface Activity {
-  name: string;
-  duration: number;
-  date: string;
-}
+import { Activity } from "@/App";
 
 interface ActivityListProps {
   activities: Activity[];
@@ -13,7 +8,7 @@ interface ActivityListProps {
 
 const ActivityList: React.FC<ActivityListProps> = ({ activities }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
 
   const totalPages = Math.ceil(activities.length / itemsPerPage);
   const paginatedActivities = activities.slice(
@@ -30,7 +25,7 @@ const ActivityList: React.FC<ActivityListProps> = ({ activities }) => {
   return (
     <>
       {activities.length === 0 ? (
-        <p className="text-gray-500">No activities logged yet.</p>
+        <p className="text-gray-500 text-center">No activities logged yet.</p>
       ) : (
         <>
           <table className="min-w-full bg-white border border-gray-300">

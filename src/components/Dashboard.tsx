@@ -47,6 +47,12 @@ const Dashboard: React.FC<DashboardProps> = ({ data }) => {
   const totalTimePerActivity = getTotalTimePerActivity();
   const dailyActivityTrend = getDailyActivityTrend();
 
+  if (data.length === 0) {
+    return (
+      <p className="text-gray-500 text-center">No activities logged yet.</p>
+    );
+  }
+
   return (
     <div className="dashboard grid gap-8">
       {/* Total Time Spent Per Activity */}
@@ -86,6 +92,7 @@ const Dashboard: React.FC<DashboardProps> = ({ data }) => {
                 />
               ))}
             </Pie>
+            <Legend />
             <Tooltip />
           </PieChart>
         </ResponsiveContainer>

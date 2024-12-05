@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import DatePicker from "./ui/datepicker";
+import { Activity } from "@/App";
 
 interface AddActivityModalProps {
   onClose: () => void;
-  onSave?: (activity: { name: string; duration: number; date: string }) => void;
+  onAddActivity?: (activity: Activity) => void;
 }
 
 const AddActivityModal: React.FC<AddActivityModalProps> = ({
   onClose,
-  onSave,
+  onAddActivity,
 }) => {
   const [name, setName] = useState("");
   const [duration, setDuration] = useState("");
@@ -25,13 +26,14 @@ const AddActivityModal: React.FC<AddActivityModalProps> = ({
     }
 
     const newActivity = {
+      id: Date.now().toString(),
       name,
       duration: Number(duration),
       date,
     };
 
-    if (onSave) {
-      onSave(newActivity);
+    if (onAddActivity) {
+      onAddActivity(newActivity);
     }
 
     onClose();
